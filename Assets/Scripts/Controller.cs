@@ -59,7 +59,14 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKey(KeyCode.A))
+        {
+            serialPort.Write("A");
+        }
+        if (Input.GetKey(KeyCode.B))
+        {
+            serialPort.Write("B");
+        }
     }
 
       // Atualiza a lista de portas e o dropdown
