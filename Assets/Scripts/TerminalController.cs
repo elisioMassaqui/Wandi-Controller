@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TerminalController : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class TerminalController : MonoBehaviour
         string command = inputField.text;
 
         // Verifica o comando e altera o texto da UI
-        if (command.StartsWith("set text "))
+        if (command.StartsWith("wandi "))
         {
-            string newText = command.Substring(9);
+            string newText = command.Substring(6);
             displayText.text = newText;
         }
 
