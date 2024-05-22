@@ -7,15 +7,27 @@ using TMPro;
 
 public class Controller : MonoBehaviour
 {
+    [Header("SerialPort")]
     public SerialPort serialPort;
 
     public TMP_Dropdown portDropdown;
     public TextMeshProUGUI portaSelecionada;
-
-
+    
     public string[] ports;
     public string selectedPort;
+
     public Image statusPort;
+
+    [Header("Outras Coisas")]
+    public Color colourA;
+    public Color colourB;
+    public Color mixedColor;
+    
+    public float forColor;
+
+    public Image colorPainel;
+
+    public Slider sliderColor;
 
     void Start()
     {
@@ -28,6 +40,22 @@ public class Controller : MonoBehaviour
          
          statusPort.color = Color.red;
     }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.B))
+        {
+            serialPort.Write("B");
+        }
+
+        mixedColor = Color.Lerp(colourA, colourB, forColor);
+
+        colorPainel.color = mixedColor;
+        forColor = sliderColor.value;
+
+        sliderColor.value = Mathf.Clamp(sliderColor.value, 0f, 1f);
+    }
+
 
         public void OpenPort()
     {
@@ -52,16 +80,6 @@ public class Controller : MonoBehaviour
         {
             serialPort.Close();
             statusPort.color = Color.red;
-        }
-    }
-
-
-
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.B))
-        {
-            serialPort.Write("B");
         }
     }
 
