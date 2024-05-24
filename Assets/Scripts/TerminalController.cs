@@ -4,6 +4,8 @@ using TMPro;
 
 public class TerminalController : MonoBehaviour
 {
+    public Controller controller;
+
     public Text displayText; // Referência ao texto que será alterado
     public InputField inputField; // Referência ao campo de entrada
 
@@ -22,5 +24,16 @@ public class TerminalController : MonoBehaviour
         // Limpa o campo de entrada após a execução do comando
         inputField.text = "";
         inputField.ActivateInputField(); // Volta o foco para o campo de entrada
+    }
+
+    void Update()
+    {
+        if (displayText.text == "ligar led")
+        {
+            if (controller.serialPort.IsOpen)
+            {
+                controller.serialPort.Write("A");
+            }
+        }
     }
 }
