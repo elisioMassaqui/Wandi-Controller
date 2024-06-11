@@ -28,11 +28,11 @@ public class TerminalController : MonoBehaviour
 
     void Update()
     {
-        if (displayText.text == "ligar led")
+        if (displayText.text == "abdrir porta")
         {
-            if (controller.serialPort.IsOpen)
+            if (!controller.serialPort.IsOpen)
             {
-                controller.serialPort.Write("A");
+                controller.OpenPort();
             }
         }
     }
